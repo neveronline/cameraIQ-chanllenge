@@ -7,7 +7,6 @@ import java.util.Date;
 
 /**
  * Author: Leo
- * Email: haojun02@meituan.com
  * Date:2019-10-05
  * Time:01:14
  * ------------------------------------
