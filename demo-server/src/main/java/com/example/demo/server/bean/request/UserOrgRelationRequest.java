@@ -1,6 +1,7 @@
 package com.example.demo.server.bean.request;
 
 import lombok.Data;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -13,7 +14,12 @@ import java.util.List;
  * Desc:
  */
 @Data
-public class UserJoinOrgRequest {
+public class UserOrgRelationRequest {
     private Integer userId;
     private List<Integer> orgIds;
+    private Integer relation;
+
+    public boolean isValid(){
+        return userId != null && userId > 0 && !CollectionUtils.isEmpty(orgIds);
+    }
 }

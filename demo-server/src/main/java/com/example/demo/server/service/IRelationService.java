@@ -1,9 +1,7 @@
 package com.example.demo.server.service;
 
 import com.example.demo.server.bean.request.OrgAddUserRequest;
-import com.example.demo.server.bean.request.UserJoinOrgRequest;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
+import com.example.demo.server.bean.request.UserOrgRelationRequest;
 
 import java.util.List;
 
@@ -18,6 +16,7 @@ public interface IRelationService {
     List<Integer> queryAllUsersByOrgId(Integer orgId);
     List<Integer> queryAllOrgsByUserId(Integer userId);
 
-    Boolean UserJoinOrgs(UserJoinOrgRequest request);
-    Boolean OrgAddUsers(OrgAddUserRequest request);
+    Boolean UserJoinOrgs(UserOrgRelationRequest request);
+
+    Boolean UserLeaveOrg
 }
