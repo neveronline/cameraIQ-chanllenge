@@ -28,13 +28,6 @@ public class OrgServiceImpl implements IOrgService {
     @Resource
     private OrganizationDOMapper orgMapper;
 
-    @Override
-    public OrgInfoVO queryOrgByName(String name) {
-        if(StringUtils.isEmpty(name)){
-            return null;
-        }
-        return OrgConvertUtils.convertToVO(orgMapper.queryByName(name));
-    }
 
     @Override
     public Boolean createOrg(OrgInfoVO orgInfoVO) {

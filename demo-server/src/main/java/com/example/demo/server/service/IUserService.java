@@ -13,7 +13,6 @@ import java.util.List;
  * Desc:
  */
 public interface IUserService {
-    UserInfoVO queryUserByEmail(String email);
     Boolean createUser(UserInfoVO userInfoVO);
     Boolean deleteUser(Integer userId);
     Boolean updateUser(UserInfoVO userInfoVO);

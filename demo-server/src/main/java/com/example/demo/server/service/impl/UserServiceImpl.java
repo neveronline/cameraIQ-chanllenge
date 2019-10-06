@@ -27,11 +27,6 @@ public class UserServiceImpl implements IUserService {
     @Resource
     UserDOMapper userMapper;
 
-    @Override
-    public UserInfoVO queryUserByEmail(String email) {
-        UserDO userDO = userMapper.queryUserByEmail(email);
-        return UserConvertUtils.convertToVO(userDO);
-    }
 
     @Override
     public Boolean createUser(UserInfoVO userInfoVO) {
