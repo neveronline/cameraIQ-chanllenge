@@ -18,7 +18,7 @@ public class OrgConvertUtils {
             return null;
         }
         OrganizationDO organizationDO = new OrganizationDO();
-        if(infoVO.getId() != 0 && infoVO.getId() > 0){
+        if(infoVO.getId() != null && infoVO.getId() > 0){
             organizationDO.setId(infoVO.getId());
         }
         organizationDO.setName(infoVO.getName());

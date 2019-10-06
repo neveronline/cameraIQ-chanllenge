@@ -36,7 +36,7 @@ public interface UserDOMapper {
 
     @Update({
             "<script>",
-            "update user",
+            "update user set",
             "<if test= 'firstName!=null'>",
             "first_name =#{firstName}",
             "</if>",

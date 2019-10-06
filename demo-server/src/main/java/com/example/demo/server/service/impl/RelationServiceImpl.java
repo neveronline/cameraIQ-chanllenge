@@ -85,6 +85,7 @@ public class RelationServiceImpl implements IRelationService {
     }
 
     @Override
+    @Transactional
     public Boolean UserLeaveOrg(UserOrgRelationRequest request) {
         List<RelationRequest> relationRequestList = convertToRelationRequest(request);
         for(RelationRequest relationRequest : relationRequestList){

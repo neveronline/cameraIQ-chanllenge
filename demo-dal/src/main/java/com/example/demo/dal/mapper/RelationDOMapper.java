@@ -19,24 +19,18 @@ import java.util.List;
 public interface RelationDOMapper {
     String ALL_FIELDS = " id, user_id, organization_id, valid_status, create_time, update_time ";
 
-    @Select({
-            "<script>",
-            "select" + ALL_FIELDS + "from user_organization where organization_id = #{orgId} and valid_status = 1",
-            "</script>"
-    })
+    @Select(
+            "select" + ALL_FIELDS + "from user_organization where organization_id = #{orgId} and valid_status = 1"
+    )
     List<RelationDO> queryByOrgId(Integer orgId);
-    @Select({
-            "<script>",
-            "select" + ALL_FIELDS + "from user_organization where user_id = #{userId} and valid_status = 1",
-            "</script>"
-    })
+    @Select(
+            "select" + ALL_FIELDS + "from user_organization where user_id = #{userId} and valid_status = 1"
+    )
     List<RelationDO> queryByUserId(Integer userId);
 
-    @Select({
-            "<script>",
-            "select" + ALL_FIELDS + "from user_organization where user_id = #{userId} and organization_id = #{orgId} and valid_status = 1",
-            "</script>"
-    })
+    @Select(
+            "select" + ALL_FIELDS + "from user_organization where user_id = #{userId} AND organization_id = #{orgId} AND valid_status = 1"
+    )
     RelationDO queryRelation(RelationRequest relationRequest);
 
     @Insert({
@@ -50,7 +44,7 @@ public interface RelationDOMapper {
 
     @Update({
             "<script>",
-            "update user_organization",
+            "update user_organization set",
             "<if test= 'userId!=null'>",
             "user_id =#{userId}",
             "</if>",

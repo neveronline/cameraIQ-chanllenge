@@ -5,10 +5,7 @@ import com.example.demo.server.bean.response.WebResponse;
 import com.example.demo.server.bean.vo.OrgInfoVO;
 import com.example.demo.server.bean.vo.UserInfoVO;
 import com.example.demo.server.biz.OperationBiz;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -21,14 +18,18 @@ import java.util.List;
  * ------------------------------------
  * Desc:
  */
-@RestController("/operation")
+@RestController
+@RequestMapping("/operation")
 public class OperationController {
     @Resource
     OperationBiz operationBiz;
 
     @PostMapping("/user")
-    public WebResponse createAnUser(UserInfoVO userInfoVO){
+    public WebResponse createAnUser(@RequestBody UserInfoVO userInfoVO){
         try{
+            if(!userInfoVO.isValid()){
+                return WebResponse.getErrorWebResponse("invalid input");
+            }
             Boolean result = operationBiz.createUser(userInfoVO);
             if(result){
                 return WebResponse.getSuccessWebResponse();
@@ -40,7 +41,7 @@ public class OperationController {
         }
     }
     @PostMapping("/org")
-    public WebResponse createAnOrg(OrgInfoVO orgInfoVO){
+    public WebResponse createAnOrg(@RequestBody OrgInfoVO orgInfoVO){
         try{
             Boolean result = operationBiz.createOrg(orgInfoVO);
             if(result){
@@ -54,7 +55,7 @@ public class OperationController {
     }
 
     @PostMapping("/join")
-    public WebResponse joinOrgs(UserOrgRelationRequest request){
+    public WebResponse joinOrgs(@RequestBody UserOrgRelationRequest request){
         try{
             Boolean result = operationBiz.joinOrgs(request);
             if(result){
@@ -68,7 +69,7 @@ public class OperationController {
     }
 
     @PostMapping("/leave")
-    public WebResponse leaveOrgs(UserOrgRelationRequest request){
+    public WebResponse leaveOrgs(@RequestBody UserOrgRelationRequest request){
         try{
             Boolean result = operationBiz.leaveOrgs(request);
             if(result){

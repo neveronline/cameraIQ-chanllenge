@@ -39,7 +39,7 @@ public interface OrganizationDOMapper {
     Boolean insert(OrganizationDO organizationDO);
 
     @Update({
-            "update organization",
+            "update organization set",
             "<if test= 'name!=null'>",
             "name =#{name}",
             "</if>",

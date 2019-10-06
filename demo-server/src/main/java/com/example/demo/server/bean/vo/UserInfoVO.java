@@ -1,6 +1,7 @@
 package com.example.demo.server.bean.vo;
 
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 /**
  * Author: Leo
@@ -19,4 +20,16 @@ public class UserInfoVO {
     private String email;
     private String address;
     private String phone;
+
+    public boolean isValid(){
+        if(StringUtils.isEmpty(firstName)){
+            return false;
+        }if(StringUtils.isEmpty(lastName)){
+            return false;
+        }
+        if(StringUtils.isEmpty(email)){
+            return false;
+        }
+        return true;
+    }
 }
