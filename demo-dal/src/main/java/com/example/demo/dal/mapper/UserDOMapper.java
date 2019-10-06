@@ -1,10 +1,7 @@
 package com.example.demo.dal.mapper;
 
 import com.example.demo.dal.bean.UserDO;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -19,12 +16,12 @@ public interface UserDOMapper {
     String ALL_FIELDS = " id, first_name, middle_name, last_name, email, address, phone, valid_status, create_time, update_time ";
 
     @Insert({"insert into user (first_name, middle_name, last_name, email, address, phone, valid_status) ",
-        "values(#{firstName}, #{middleName}, #{lastName}, #{email}, #{address}, #{phone}, #{validStatus})"})
+        "values (#{firstName}, #{middleName}, #{lastName}, #{email}, #{address}, #{phone}, #{validStatus})"})
     @Options(useGeneratedKeys = true, keyProperty = "id")
     Boolean insert(UserDO userDO);
 
     @Select({"<script>",
-            "select" + ALL_FIELDS + "from user where id = #{id}",
+            "select" + ALL_FIELDS + "from user where id = #{id} and valid_status = 1",
             "</script>"})
     UserDO query(@Param("id") Integer id);
 
@@ -33,11 +30,40 @@ public interface UserDOMapper {
             "<foreach collection='ids' item='id' open='(' separator=',' close=')'>",
             "#{id}",
             "</foreach> ",
+            " and valid_status = 1",
             "</script>"})
     List<UserDO> batchQuery(@Param("ids") List<Integer> ids);
 
-    UserDO queryUserByEmail(String email);
-
+    @Update({
+            "<script>",
+            "update user",
+            "<if test= 'firstName!=null'>",
+            "first_name =#{firstName}",
+            "</if>",
+            "<if test= 'middleName!=null'>",
+            ",middle_name =#{middleName}",
+            "</if>",
+            "<if test= 'lastName!=null'>",
+            ",last_name =#{lastName}",
+            "</if>",
+            "<if test= 'email!=null'>",
+            ",email =#{email}",
+            "</if>",
+            "<if test= 'address!=null'>",
+            ",address =#{address}",
+            "</if>",
+            "<if test= 'phone!=null'>",
+            ",phone =#{phone}",
+            "</if>",
+            "<if test= 'validStatus!=null'>",
+            ",valid_status =#{validStatus}",
+            "</if>",
+            "<if test= 'createTime!=null'>",
+            ",create_time =#{createTime}",
+            "</if>",
+            " where id = #{id}",
+            "</script>"
+    })
     Boolean update(UserDO userDO);
 
 }

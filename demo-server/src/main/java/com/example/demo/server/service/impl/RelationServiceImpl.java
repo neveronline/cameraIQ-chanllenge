@@ -93,8 +93,8 @@ public class RelationServiceImpl implements IRelationService {
                 continue;
             }
             relationDO.setValidStatus(ValidStatusEnum.DELETED.getCode());
-            Boolean result = relationDOMapper.insertRelation(relationDO);
-            if(!result){
+            Boolean result = relationDOMapper.updateRelation(relationDO);
+            if(!result) {
                 return false;
             }
         }

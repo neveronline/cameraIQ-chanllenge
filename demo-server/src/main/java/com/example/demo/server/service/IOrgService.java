@@ -13,7 +13,6 @@ import java.util.List;
  * Desc:
  */
 public interface IOrgService {
-    OrgInfoVO queryOrgByName(String name);
     Boolean createOrg(OrgInfoVO orgInfoVO);
     Boolean updateOrg(OrgInfoVO orgInfoVO);
     Boolean deleteOrg(Integer orgId);
