@@ -1,6 +1,5 @@
 package com.example.demo.server.service;
 
-import com.example.demo.server.bean.request.OrgAddUserRequest;
 import com.example.demo.server.bean.request.UserOrgRelationRequest;
 
 import java.util.List;
@@ -18,5 +17,5 @@ public interface IRelationService {
 
     Boolean UserJoinOrgs(UserOrgRelationRequest request);
 
-    Boolean UserLeaveOrg
+    Boolean UserLeaveOrg(UserOrgRelationRequest request);
 }

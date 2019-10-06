@@ -76,7 +76,27 @@ public class RelationServiceImpl implements IRelationService {
                 relationDO = convertRequestToDO(relationRequest);
             }
             relationDO.setValidStatus(ValidStatusEnum.VALID.getCode());
-            relationDOMapper.insertRelation(relationDO);
+            Boolean result = relationDOMapper.insertRelation(relationDO);
+            if(!result){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean UserLeaveOrg(UserOrgRelationRequest request) {
+        List<RelationRequest> relationRequestList = convertToRelationRequest(request);
+        for(RelationRequest relationRequest : relationRequestList){
+            RelationDO relationDO = relationDOMapper.queryRelation(relationRequest);
+            if(relationDO == null){
+                continue;
+            }
+            relationDO.setValidStatus(ValidStatusEnum.DELETED.getCode());
+            Boolean result = relationDOMapper.insertRelation(relationDO);
+            if(!result){
+                return false;
+            }
         }
         return true;
     }
